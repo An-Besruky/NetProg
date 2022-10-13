@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     remoteAddr->sin_addr.s_addr = inet_addr("127.0.0.1");
     char *buf = new char[100];
     strcpy(buf,"Hello\n");
-    mySoket=socket(AF_INET, SOCK_STREAM,0);
+    mySoket=socket(AF_INET, SOCK_DGRAM,0);
     if (mySoket == -1) {
         errnet("Error open socket",11);
     }
@@ -36,6 +36,11 @@ int main(int argc, char **argv)
     if (rc == -1) {
         close(mySoket);
         errnet("Error bind socket remote server", 13);
+    }
+    rc = send(mySoket, buf, 100, 0);
+    if (rc == -1) {
+    	close(mySoket);
+    	errnet("Error send answer", 15);
     }
     rc = recv(mySoket, buf, 100, 0);
     if (rc == -1) {
