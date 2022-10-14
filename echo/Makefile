@@ -3,8 +3,8 @@
 RELEASE_FLAGS = -O2 -Wall -DNDEBUG
 DEBUG_FLAGS   = -g -O0 -Wall
 RELEASE_EXEC  = echopr
-DEBUG_EXEC    = echo-dbg
-SOURCE        = echo.cpp
+DEBUG_EXEC    = echopr-dbg
+SOURCE        = echopr.cpp
 
 all: debug release
 
